@@ -317,6 +317,10 @@ install(TARGETS portaudio portaudio_static
         ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/static
 )
 
+install(DIRECTORY include
+        DESTINATION ${CMAKE_INSTALL_PREFIX}
+)
+
 # Configure the exports file according to settings
 SET(GENERATED_MESSAGE "CMake generated file, do NOT edit! Use CMake-GUI to change configuration instead.")
 CONFIGURE_FILE( cmake_support/template_portaudio.def ${CMAKE_CURRENT_BINARY_DIR}/portaudio_cmake.def @ONLY )
