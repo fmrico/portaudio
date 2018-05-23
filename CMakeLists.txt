@@ -101,11 +101,11 @@ INCLUDE_DIRECTORIES(${ASIOSDK_ROOT_DIR}/host/pc)
 
 SET(PA_ASIO_INCLUDES
   include/pa_asio.h
-)  
+)
 
-SET(PA_ASIO_SOURCES 
+SET(PA_ASIO_SOURCES
   src/hostapi/asio/pa_asio.cpp
-)  
+)
 
 SET(PA_ASIOSDK_SOURCES
   ${ASIOSDK_ROOT_DIR}/common/asio.cpp
@@ -191,12 +191,12 @@ SET(PA_SKELETON_SOURCES
   src/hostapi/skeleton/pa_hostapi_skeleton.c
 )
 
-SOURCE_GROUP("hostapi\\skeleton" 
+SOURCE_GROUP("hostapi\\skeleton"
   ${PA_SKELETON_SOURCES})
 
 #######################################
 IF(WIN32)
-SET(PA_INCLUDES 
+SET(PA_INCLUDES
   include/portaudio.h
   ${PA_ASIO_INCLUDES}
   ${PA_DS_INCLUDES}
@@ -251,7 +251,7 @@ SOURCE_GROUP("cmake_generated" FILES
 )
 
 IF(WIN32)
-SET(PA_PLATFORM_SOURCES 
+SET(PA_PLATFORM_SOURCES
   src/os/win/pa_win_hostapis.c
   src/os/win/pa_win_util.c
   src/os/win/pa_win_waveformat.c
@@ -311,6 +311,12 @@ ADD_LIBRARY(portaudio_static STATIC
   ${CMAKE_CURRENT_BINARY_DIR}/options_cmake.h
 )
 
+install(TARGETS portaudio portaudio_static
+        RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+        LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/static
+)
+
 # Configure the exports file according to settings
 SET(GENERATED_MESSAGE "CMake generated file, do NOT edit! Use CMake-GUI to change configuration instead.")
 CONFIGURE_FILE( cmake_support/template_portaudio.def ${CMAKE_CURRENT_BINARY_DIR}/portaudio_cmake.def @ONLY )
@@ -346,4 +352,3 @@ SUBDIRS(examples)
 ENDIF(PA_BUILD_EXAMPLES)
 
 #################################
-
